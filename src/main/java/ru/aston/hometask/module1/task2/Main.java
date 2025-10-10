@@ -1,6 +1,8 @@
-package module1.task2;
+package ru.aston.hometask.module1.task2;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,13 +18,12 @@ public class Main {
         Book book10 = new Book("title10", "author10", 1999, 700);
 
         // Создаем студентов с книгами (минимум 5 книг у каждого)
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student("Student1", Arrays.asList(book1, book2, book5, book6, book9)),
                 new Student("Student2", Arrays.asList(book3, book4, book7, book8, book10)),
                 new Student("Student3", Arrays.asList(book1, book5, book6, book7, book8))
         );
 
-        // Один стрим для всех операций
         students.stream()
                 .peek(System.out::println)
                 .flatMap(student -> student.getBooks().stream())

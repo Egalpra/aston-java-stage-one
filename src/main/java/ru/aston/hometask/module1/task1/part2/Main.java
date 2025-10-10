@@ -1,4 +1,4 @@
-package module1.task1.part2;
+package ru.aston.hometask.module1.task1.part2;
 
 public class Main {
     public static void main(String[] args) {

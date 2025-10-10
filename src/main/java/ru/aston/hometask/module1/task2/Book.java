@@ -1,4 +1,4 @@
-package module1.task2;
+package ru.aston.hometask.module1.task2;
 
 import java.util.Objects;
 
@@ -8,22 +8,20 @@ public class Book {
     private String title;
     private String author;
 
-    public Book(String title, String author, int publishYear, int pageCount){
+    public Book(String title, String author, int publishYear, int pageCount) {
 
-        if (pageCount < 0) throw new IllegalArgumentException ("Отрицательное количество страниц!");
-        if (publishYear < 0) throw new IllegalArgumentException ("Отрицательный год выхода!");
+        if (pageCount < 0) throw new IllegalArgumentException("Отрицательное количество страниц!");
+        if (publishYear < 0) throw new IllegalArgumentException("Отрицательный год выхода!");
 
         this.pageCount = pageCount;
 
-        if (title == null || title.equals(""))
-        {
+        if (title == null || title.equals("")) {
             this.title = "unknown";
         } else {
             this.title = title;
         }
 
-        if (author == null || author.equals(""))
-        {
+        if (author == null || author.equals("")) {
             this.author = "unknown";
         } else {
             this.author = author;
@@ -33,19 +31,19 @@ public class Book {
 
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
-    public String getAuthor(){
+    public String getAuthor() {
         return this.author;
     }
 
-    public int getPageCount(){
+    public int getPageCount() {
         return this.pageCount;
     }
 
-    public int getPublishYear(){
+    public int getPublishYear() {
         return publishYear;
     }
 

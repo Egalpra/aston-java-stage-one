@@ -1,4 +1,4 @@
-package module1.task2;
+package ru.aston.hometask.module1.task2;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ public class Student {
     private String name;
     private List<Book> books;
 
-    public Student(String name, List<Book> books){
+    public Student(String name, List<Book> books) {
         this.name = name;
         this.books = books;
     }
@@ -19,4 +19,4 @@ public class Student {
     public String toString() {
         return "Student{name='" + name + "'}";
     }
-}g
+}

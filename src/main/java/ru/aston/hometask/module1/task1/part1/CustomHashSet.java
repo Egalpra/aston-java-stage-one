@@ -1,16 +1,18 @@
-package module1.task1.part1;
+package ru.aston.hometask.module1.task1.part1;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class CustomHashSet<E> {
-    private LinkedList<E>[] buckets;
-    private int size;
-    private double threshold;
     private static final int INITIAL_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
     private static final double INITIAL_THRESHOLD = INITIAL_CAPACITY * LOAD_FACTOR;
+
+    private List<E>[] buckets;
+    private int size;
+    private double threshold;
 
     public CustomHashSet() {
         buckets = new LinkedList[INITIAL_CAPACITY];
@@ -18,11 +20,17 @@ public class CustomHashSet<E> {
         threshold = INITIAL_THRESHOLD;
     }
 
+    public CustomHashSet(int capacity) {
+        buckets = new LinkedList[capacity];
+        size = 0;
+        threshold = capacity * LOAD_FACTOR;
+    }
+
     public boolean add(E newElement) {
 
         int index = calculateIndex(newElement);
 
-        LinkedList<E> bucket = buckets[index];
+        List<E> bucket = buckets[index];
 
         if (bucket == null) {
             bucket = new LinkedList<>();
@@ -37,14 +45,16 @@ public class CustomHashSet<E> {
 
         bucket.add(newElement);
         size++;
-        if (size > threshold) resize();
+        if (size > threshold) {
+            resize();
+        }
         return true;
     }
 
     public boolean remove(E element) {
         int index = calculateIndex(element);
 
-        LinkedList<E> bucket = buckets[index];
+        List<E> bucket = buckets[index];
         if (bucket != null && !bucket.isEmpty()) {
             Iterator<E> iterator = bucket.iterator();
             while (iterator.hasNext()) {
@@ -53,7 +63,7 @@ public class CustomHashSet<E> {
                     iterator.remove();
                     size--;
                     if (bucket.isEmpty()) {
-                        buckets[index] = null;  // ← Очищаем пустую корзину
+                        buckets[index] = null;
                     }
                     return true;
                 }
@@ -68,7 +78,9 @@ public class CustomHashSet<E> {
 
     private int calculateIndex(E element) {
 
-        if (element == null) return 0;
+        if (element == null) {
+            return 0;
+        }
 
         int hashCode = element.hashCode();
         return Math.abs(hashCode % buckets.length);
@@ -77,11 +89,11 @@ public class CustomHashSet<E> {
     private void resize() {
         int newCapacity = buckets.length * 2;
         threshold = Double.MAX_VALUE;
-        LinkedList<E>[] oldBuckets = buckets;
+        List<E>[] oldBuckets = buckets;
         buckets = new LinkedList[newCapacity];
 
         size = 0;
-        for (LinkedList<E> bucket : oldBuckets) {
+        for (List<E> bucket : oldBuckets) {
             if (bucket != null && !bucket.isEmpty()) {
                 for (E element : bucket) {
                     add(element);
